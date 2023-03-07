@@ -3,8 +3,7 @@ import javax.swing.border.Border;
 import java.awt.event.*;
 import java.util.List;
 
-public class PizzaPlace implements ActionListener
-{
+public class PizzaPlace implements ActionListener {
 	JTextField cussText;
 	JRadioButton smallRadio;
 	JRadioButton mediumRadio;
@@ -18,13 +17,11 @@ public class PizzaPlace implements ActionListener
 	JButton orderButton;
 	JButton resetButton;
 	
-	public static void main(String[] args) 
-	{
+	public static void main(String[] args) {
 		new PizzaPlace();
 	}
 	
-	public PizzaPlace()
-	{
+	public PizzaPlace() {
 		JFrame myFrame = new JFrame();
 		
 		myFrame.setTitle("Pizza Place");
@@ -110,39 +107,37 @@ public class PizzaPlace implements ActionListener
 		myFrame.setVisible(true);
 	}
 	
-	public void actionPerformed(ActionEvent event)
-	{
+	public void actionPerformed(ActionEvent event) {
 		Object control = event.getSource();
 		String summary;
 		String sizes = "";
 		if (smallRadio.isSelected() == true)
 			sizes = "Small";
-		if (mediumRadio.isSelected() == true)
+		else if (mediumRadio.isSelected() == true)
 			sizes = "Medium";
-		if (largeRadio.isSelected() == true)
+		else
 			sizes = "Large";
 		
-		if (control == orderButton)
-		{
+		if (control == orderButton) {
 			List tops = toppingList.getSelectedValuesList(); 
-		      
+
 			String topsChosen =  "";
 
-			for (int i = 0; i< tops.size();  i++)  
-			{
+			for (int i = 0; i< tops.size();  i++) {
 			   topsChosen = topsChosen + (String) tops.get(i) + "\n";
 			}
 			
-		String extra = "";	
-		if (breadstickBox.isSelected() == true)
-		{
-			extra = "BreadStick";
-			
+			String extra = "";	
+			String breadChoice = "BreadSitcks";
+			String sodaChoice = "Soda";
+			String saladChoice = "Salad";
+
+			if (breadstickBox.isSelected() == true)
+				extra += breadChoice + "\n";
 			if (saladBox.isSelected() == true)
-				extra = "Breadstick \n" + "Salad ";
+				extra += saladChoice + "\n";
 			if (sodaBox.isSelected() == true)
-				extra = "Breadstick " + "Soda " + "Salad";
-		}
+				extra += sodaChoice + "\n";
 
 			summary = "PIZZA ORDER FOR: " + cussText.getText() + "\n" + "SIZE: " + "\n" + sizes + "\n" + 
 							"CRUST TYPE:" + "\n" + (String)crustBox.getSelectedItem() + "\n" +
@@ -153,8 +148,7 @@ public class PizzaPlace implements ActionListener
 			JOptionPane.showMessageDialog(null, summary);
 		}
 		
-		if (control == resetButton)
-		{
+		if (control == resetButton) {
 			cussText.setText(" ");
 			smallRadio.setSelected(true);
 			mediumRadio.setSelected(false);
